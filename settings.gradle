@@ -1,0 +1,3 @@
+rootProject.name = 'spring_microservices'
+include('limits-service')
+include('spring-cloud-config-server')
