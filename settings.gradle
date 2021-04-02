@@ -1,3 +1,5 @@
 rootProject.name = 'spring_microservices'
 include('limits-service')
 include('spring-cloud-config-server')
+include('currency-exchange-service')
+include('currency-conversion-service')
