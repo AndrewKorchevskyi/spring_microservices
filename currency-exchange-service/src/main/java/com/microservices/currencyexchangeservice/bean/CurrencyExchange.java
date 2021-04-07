@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.util.Random;
 
 @Entity
 public class CurrencyExchange {
@@ -19,11 +20,11 @@ public class CurrencyExchange {
     private BigDecimal conversionMultiple;
     private String environment;
 
-    public CurrencyExchange(Long id, String from, String to, BigDecimal conversionMultiple) {
-        this.id = id;
+    public CurrencyExchange(String from, String to, double conversionMultiple) {
+        this.id = Math.abs(new Random().nextLong());
         this.from = from;
         this.to = to;
-        this.conversionMultiple = conversionMultiple;
+        this.conversionMultiple = BigDecimal.valueOf(conversionMultiple);
     }
 
     public CurrencyExchange() {
