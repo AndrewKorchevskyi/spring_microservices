@@ -1,5 +1,15 @@
-# spring_microservices
+# Currency Conversion Spring Boot application (microservices)
 
+## How to run
+Unix  
+
+Simply run in project root following commands:
+- `./gradlew bootBuildImage`  
+- `docker-compose up`  
+
+or use `start.sh` (don't forget to apply exec permissions)
+
+## URLs
 Currency Conversion Service (via API Gateway):  
 http://localhost:8765/currency-conversion/from/IDR/to/UAH/quantity/50000  
 (UAH, IDR, 50000 are customizable)
