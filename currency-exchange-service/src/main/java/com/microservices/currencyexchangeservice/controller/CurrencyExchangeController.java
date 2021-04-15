@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
+
 @RestController
 public class CurrencyExchangeController {
 
@@ -23,7 +25,7 @@ public class CurrencyExchangeController {
             @PathVariable String from,
             @PathVariable String to) {
         logger.info("retrieveExchangeValue called with {} to {}", from, to);
-        double conversionMultiple = new CurrencyRatesVendor().getRate(from, to);
+        BigDecimal conversionMultiple = BigDecimal.valueOf(new CurrencyRatesVendor().getRate(from, to));
         CurrencyExchange currencyExchange = new CurrencyExchange(from, to, conversionMultiple);
         String port = environment.getProperty("local.server.port");
         currencyExchange.setEnvironment(port);

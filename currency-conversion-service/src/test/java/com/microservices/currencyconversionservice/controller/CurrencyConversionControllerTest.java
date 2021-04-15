@@ -1,6 +1,7 @@
-package com.microservices.currencyexchangeservice.controller;
+package com.microservices.currencyconversionservice.controller;
 
-import com.microservices.currencyexchangeservice.bean.CurrencyExchange;
+import com.microservices.currencyconversionservice.CurrencyExchangeProxy;
+import com.microservices.currencyconversionservice.bean.CurrencyConversion;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,36 +21,47 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(CurrencyExchangeController.class)
-public class CurrencyExchangeControllerTest {
+@WebMvcTest(CurrencyConversionController.class)
+public class CurrencyConversionControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private CurrencyExchangeController currencyExchangeController;
+    private CurrencyExchangeProxy currencyExchangeProxy;
 
     @Test
-    public void testCurrencyExchangeController() throws Exception {
+    public void testCurrencyConversionController() throws Exception {
 
+        long id = 10101L;
         String currencyFrom = "USD";
         String currencyTo = "UAH";
         BigDecimal currencyConversionMultiple = BigDecimal.valueOf(13.23013);
+        BigDecimal quantity = BigDecimal.valueOf(100);
+        BigDecimal totalCalculatedAmount = BigDecimal.valueOf(1323.013);
         String environment = "8000";
 
-        CurrencyExchange currencyExchange = new CurrencyExchange(currencyFrom, currencyTo, currencyConversionMultiple)
-                .setEnvironment(environment);
+        CurrencyConversion currencyConversion = new CurrencyConversion(
+                id,
+                currencyFrom,
+                currencyTo,
+                quantity,
+                currencyConversionMultiple,
+                totalCalculatedAmount,
+                environment);
 
-        when(currencyExchangeController.retrieveExchangeValue(currencyFrom, currencyTo))
-                .thenReturn(currencyExchange);
+        when(currencyExchangeProxy.retrieveExchangeValue(currencyFrom, currencyTo))
+                .thenReturn(currencyConversion);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get("/currency-exchange/from/" + currencyFrom + "/to/" + currencyTo)
+                .get("/currency-conversion/from/"
+                        + currencyFrom + "/to/" + currencyTo + "/quantity/" + quantity)
                 .accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(requestBuilder)
                 .andExpect(status().isOk())
-                .andExpect(content().json(currencyExchange.toString()))
+                .andExpect(content().json(currencyConversion.toString()))
                 .andReturn();
     }
+
 }

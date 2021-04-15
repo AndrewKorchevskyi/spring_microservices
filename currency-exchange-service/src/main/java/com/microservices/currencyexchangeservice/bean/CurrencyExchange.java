@@ -20,11 +20,11 @@ public class CurrencyExchange {
     private BigDecimal conversionMultiple;
     private String environment;
 
-    public CurrencyExchange(String from, String to, double conversionMultiple) {
+    public CurrencyExchange(String from, String to, BigDecimal conversionMultiple) {
         this.id = Math.abs(new Random().nextLong());
         this.from = from;
         this.to = to;
-        this.conversionMultiple = BigDecimal.valueOf(conversionMultiple);
+        this.conversionMultiple = conversionMultiple;
     }
 
     public CurrencyExchange() {
