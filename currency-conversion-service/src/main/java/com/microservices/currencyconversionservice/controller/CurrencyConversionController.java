@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @RestController
 public class CurrencyConversionController {
@@ -16,7 +17,7 @@ public class CurrencyConversionController {
     private CurrencyExchangeProxy currencyExchangeProxy;
 
     @GetMapping("/currency-conversion/from/{from}/to/{to}/quantity/{quantity}")
-    public CurrencyConversion calculateCurrencyConversionFeign(
+    public CurrencyConversion calculateCurrencyConversion(
             @PathVariable String from,
             @PathVariable String to,
             @PathVariable BigDecimal quantity) {
@@ -29,7 +30,7 @@ public class CurrencyConversionController {
                 to,
                 quantity,
                 currencyConversion.getConversionMultiple(),
-                quantity.multiply(currencyConversion.getConversionMultiple()),
+                quantity.multiply(currencyConversion.getConversionMultiple()).setScale(2, RoundingMode.HALF_EVEN),
                 currencyConversion.getEnvironment());
     }
 }

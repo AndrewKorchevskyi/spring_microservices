@@ -20,11 +20,11 @@ public class CurrencyExchange {
     private BigDecimal conversionMultiple;
     private String environment;
 
-    public CurrencyExchange(String from, String to, double conversionMultiple) {
+    public CurrencyExchange(String from, String to, BigDecimal conversionMultiple) {
         this.id = Math.abs(new Random().nextLong());
         this.from = from;
         this.to = to;
-        this.conversionMultiple = BigDecimal.valueOf(conversionMultiple);
+        this.conversionMultiple = conversionMultiple;
     }
 
     public CurrencyExchange() {
@@ -34,39 +34,55 @@ public class CurrencyExchange {
         return id;
     }
 
-    public void setId(Long id) {
+    public CurrencyExchange setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getFrom() {
         return from;
     }
 
-    public void setFrom(String from) {
+    public CurrencyExchange setFrom(String from) {
         this.from = from;
+        return this;
     }
 
     public String getTo() {
         return to;
     }
 
-    public void setTo(String to) {
+    public CurrencyExchange setTo(String to) {
         this.to = to;
+        return this;
     }
 
     public BigDecimal getConversionMultiple() {
         return conversionMultiple;
     }
 
-    public void setConversionMultiple(BigDecimal conversionMultiple) {
+    public CurrencyExchange setConversionMultiple(BigDecimal conversionMultiple) {
         this.conversionMultiple = conversionMultiple;
+        return this;
     }
 
     public String getEnvironment() {
         return environment;
     }
 
-    public void setEnvironment(String environment) {
+    public CurrencyExchange setEnvironment(String environment) {
         this.environment = environment;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "id:" + id +
+                ", from:'" + from + '\'' +
+                ", to:'" + to + '\'' +
+                ", conversionMultiple:" + conversionMultiple +
+                ", environment:'" + environment + '\'' +
+                '}';
     }
 }
