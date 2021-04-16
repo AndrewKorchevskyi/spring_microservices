@@ -33,40 +33,45 @@ public class CurrencyConversion {
         return id;
     }
 
-    public void setId(Long id) {
+    public CurrencyConversion setId(Long id) {
         this.id = id;
+        return this;
     }
 
     public String getFrom() {
         return from;
     }
 
-    public void setFrom(String from) {
+    public CurrencyConversion setFrom(String from) {
         this.from = from;
+        return this;
     }
 
     public String getTo() {
         return to;
     }
 
-    public void setTo(String to) {
+    public CurrencyConversion setTo(String to) {
         this.to = to;
+        return this;
     }
 
     public BigDecimal getConversionMultiple() {
         return conversionMultiple;
     }
 
-    public void setConversionMultiple(BigDecimal conversionMultiple) {
+    public CurrencyConversion setConversionMultiple(BigDecimal conversionMultiple) {
         this.conversionMultiple = conversionMultiple;
+        return this;
     }
 
     public BigDecimal getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(BigDecimal quantity) {
+    public CurrencyConversion setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
+        return this;
     }
 
     public BigDecimal getTotalCalculatedAmount() {
@@ -81,8 +86,9 @@ public class CurrencyConversion {
         return environment;
     }
 
-    public void setEnvironment(String environment) {
+    public CurrencyConversion setEnvironment(String environment) {
         this.environment = environment;
+        return this;
     }
 
     @Override
