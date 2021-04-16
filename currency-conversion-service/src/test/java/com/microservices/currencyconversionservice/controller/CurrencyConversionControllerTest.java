@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -38,7 +39,7 @@ public class CurrencyConversionControllerTest {
         String currencyTo = "UAH";
         BigDecimal currencyConversionMultiple = BigDecimal.valueOf(13.23013);
         BigDecimal quantity = BigDecimal.valueOf(100);
-        BigDecimal totalCalculatedAmount = quantity.multiply(currencyConversionMultiple);
+        BigDecimal totalCalculatedAmount = quantity.multiply(currencyConversionMultiple).setScale(2, RoundingMode.HALF_EVEN);
         String environment = "8000";
 
         CurrencyConversion currencyConversion = new CurrencyConversion(
