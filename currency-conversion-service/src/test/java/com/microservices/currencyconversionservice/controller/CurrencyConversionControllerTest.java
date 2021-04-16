@@ -38,7 +38,7 @@ public class CurrencyConversionControllerTest {
         String currencyTo = "UAH";
         BigDecimal currencyConversionMultiple = BigDecimal.valueOf(13.23013);
         BigDecimal quantity = BigDecimal.valueOf(100);
-        BigDecimal totalCalculatedAmount = BigDecimal.valueOf(1323.013);
+        BigDecimal totalCalculatedAmount = quantity.multiply(currencyConversionMultiple);
         String environment = "8000";
 
         CurrencyConversion currencyConversion = new CurrencyConversion(
